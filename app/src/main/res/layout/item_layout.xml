@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        app:cardCornerRadius="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+
+        <TableLayout
+            android:id="@+id/order_Card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFC821">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/order_ID_Tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="ORDER ID : " />
+
+                <TextView
+                    android:id="@+id/order_ID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="3"
+                    android:layout_column="1"/>
+
+                <TextView
+                    android:id="@+id/order_Date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="5"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:gravity="end"
+                    android:text="DATE"
+                    android:layout_marginEnd="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/user_Name_Tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:text="USERNAME :" />
+
+                <TextView
+                    android:id="@+id/user_Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="3"
+                    android:text="KISHORE THEERAJ V J" />
+
+                <TextView
+                    android:id="@+id/order_Time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="5"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="10dp"
+                    android:padding="5dp"
+                    android:gravity="end"
+                    android:text="TIME" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:id="@+id/user_mobile_Tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:text="MOBILE :" />
+
+                <TextView
+                    android:id="@+id/user_Mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="3"
+                    android:layout_column="1"
+                    android:text="9840241530" />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="5"
+                    android:checked="false"
+                    android:layout_marginEnd="10dp"
+                    android:padding="5dp"
+                    android:gravity="end"
+                    android:text="SEEN"
+                    android:textColor="@color/black"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/order_row"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/order_food_name"
+                    android:layout_width="wrap_content"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:textColor="@color/black"
+                    android:layout_height="wrap_content"
+                    android:text="FOOD NAME" />
+
+                <TextView
+                    android:id="@+id/order_food_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:text="QUANTITY" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:gravity="end">
+
+                <TextView
+                    android:id="@+id/total_Cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:gravity="end"
+                    android:textColor="@color/black"
+                    android:text="TOTAL PRICE : COST" />
+            </TableRow>
+        </TableLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
