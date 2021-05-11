@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="#2149FF"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -35,6 +34,7 @@
                     android:id="@+id/order_ID_Tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:letterSpacing="0.11"
                     android:layout_column="0"
                     android:padding="5dp"
                     android:textColor="@color/black"
@@ -44,21 +44,37 @@
                     android:id="@+id/order_ID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:letterSpacing="0.11"
                     android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:layout_weight="3"
-                    android:layout_column="1"/>
+                    android:background="#654C00"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/order_Date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="5"
+                    android:layout_column="2"
+                    android:gravity="center"
                     android:padding="5dp"
                     android:textColor="@color/black"
+                    android:text="DATE"/>
+
+                <TextView
+                    android:id="@+id/order_Time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="3"
+                    android:letterSpacing="0.11"
+                    android:layout_gravity="start"
+                    android:textColor="@color/black"
                     android:gravity="end"
-                    android:text="DATE"
-                    android:layout_marginEnd="10dp" />
+                    android:layout_marginEnd="10dp"
+                    android:padding="5dp"
+                    android:text="TIME" />
+
             </TableRow>
 
             <TableRow
@@ -72,6 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:layout_column="0"
+                    android:letterSpacing="0.11"
                     android:textColor="@color/black"
                     android:text="USERNAME :" />
 
@@ -81,20 +99,11 @@
                     android:layout_height="wrap_content"
                     android:layout_column="1"
                     android:padding="5dp"
+                    android:letterSpacing="0.11"
+                    android:layout_weight="2"
                     android:textColor="@color/black"
-                    android:layout_weight="3"
                     android:text="KISHORE THEERAJ V J" />
 
-                <TextView
-                    android:id="@+id/order_Time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="5"
-                    android:textColor="@color/black"
-                    android:layout_marginEnd="10dp"
-                    android:padding="5dp"
-                    android:gravity="end"
-                    android:text="TIME" />
             </TableRow>
 
             <TableRow
@@ -108,6 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="0"
+                    android:letterSpacing="0.11"
                     android:textColor="@color/black"
                     android:padding="5dp"
                     android:text="MOBILE :" />
@@ -117,30 +127,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:letterSpacing="0.11"
                     android:textColor="@color/black"
-                    android:layout_weight="3"
                     android:layout_column="1"
                     android:text="9840241530" />
 
-                <Switch
-                    android:id="@+id/switch1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="5"
-                    android:checked="false"
-                    android:layout_marginEnd="10dp"
-                    android:padding="5dp"
-                    android:gravity="end"
-                    android:text="SEEN"
-                    android:textColor="@color/black"
-                    tools:ignore="UseSwitchCompatOrMaterialXml" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/order_row"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/serialno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:background="#654C00"
+                    android:layout_column="0"
+                    android:lineHeight="25dp"
+                    android:textColor="@color/white"
+                    android:letterSpacing="0.11"
+                    android:text="S.NO." />
 
                 <TextView
                     android:id="@+id/order_food_name"
@@ -148,7 +160,11 @@
                     android:padding="5dp"
                     android:gravity="center"
                     android:layout_weight="2"
-                    android:textColor="@color/black"
+                    android:letterSpacing="0.11"
+                    android:layout_column="1"
+                    android:background="#654C00"
+                    android:textColor="@color/white"
+                    android:lineHeight="25dp"
                     android:layout_height="wrap_content"
                     android:text="FOOD NAME" />
 
@@ -158,7 +174,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:padding="5dp"
-                    android:textColor="@color/black"
+                    android:letterSpacing="0.11"
+                    android:layout_column="2"
+                    android:background="#654C00"
+                    android:textColor="@color/white"
+                    android:lineHeight="25dp"
                     android:gravity="center"
                     android:layout_weight="2"
                     android:text="QUANTITY" />
@@ -169,16 +189,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:gravity="end">
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/buttonDeliver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="0"
+                    android:layout_marginStart="5dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:visibility="invisible"
+                    android:textColor="@color/white"
+                    android:layout_marginEnd="10dp"
+                    android:text="DELIVER" />
 
                 <TextView
                     android:id="@+id/total_Cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:gravity="end"
-                    android:textColor="@color/black"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:layout_column="1"
+                    android:letterSpacing="0.11"
+                    android:background="#2149FF"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:text="TOTAL PRICE : COST" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipReceive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0.11"
+                    android:layout_gravity="left"
+                    android:padding="5dp"
+                    android:text="RECEIVE"
+                    android:textColor="@color/white"
+                    app:chipBackgroundColor="#2149FF" />
+
             </TableRow>
         </TableLayout>
     </androidx.cardview.widget.CardView>

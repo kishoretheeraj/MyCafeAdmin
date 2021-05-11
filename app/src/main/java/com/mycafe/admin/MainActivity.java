@@ -1,31 +1,31 @@
 package com.mycafe.admin;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    FirebaseFirestore fStore;
-    ArrayList<items> datalist;
     RecyclerView recyclerView;
-    RecyclerAdapter adapter;
+
+    FirebaseFirestore fStore = FirebaseFirestore.getInstance();
+    CollectionReference ref = fStore.collection("orders");
+    FirestoreRecyclerOptions<items> options;
+    FirestoreRecyclerAdapter<items, RecyclerAdapter>adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +34,66 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.reyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        datalist = new ArrayList<>();
-        adapter = new RecyclerAdapter(datalist);
-        recyclerView.setAdapter(adapter);
 
-        fStore = FirebaseFirestore.getInstance();
-        fStore.collection("orders").get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    ArrayList<DocumentSnapshot> list1 = (ArrayList<DocumentSnapshot>) queryDocumentSnapshots.getDocuments();
-                    for (DocumentSnapshot d : list1){
-                        items obj = d.toObject(items.class);
-                        datalist.add(obj);
-                    }
-                    adapter.notifyDataSetChanged();
-                    refresh();
-                });
+        ReadData();
 
     }
 
-    private void refresh() {
-        fStore.collection("orders").addSnapshotListener((value, error) -> {
-            if (error!=null) {
-                Log.w("TAG", "Listen Failed", error);
-                return;
+    private void ReadData() {
+        options = new FirestoreRecyclerOptions.Builder<items>().setQuery(ref, items.class).build();
+        adapter = new FirestoreRecyclerAdapter<items, RecyclerAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull RecyclerAdapter holder, int position, @NonNull items model) {
+
+                List<String> list1 = model.getFoodorder();
+                String foodnames = "FOOD NAME";
+                String foodqty = "QTY";
+                String sno = "S NO";
+                int i = 1;
+                for (String x:list1) {
+                    int temp = list1.indexOf(x);
+                    if (temp%3 == 0) {
+                        sno += "\n" + i + ".";
+                        foodnames += "\n" + x;
+                    }
+                    else if ((temp+1)%3 == 0) {
+                        foodqty += "\n" + x;
+                        i += 1;
+                    }
+                }
+
+                holder.orderID.setText(model.getOrderid());
+                holder.userName.setText(model.getName());
+                holder.userMobile.setText(model.getMobile());
+                holder.orderDate.setText(model.getDate());
+                holder.orderTime.setText(model.getTime());
+                holder.totalCost.setText("Total Cost : Rs." + model.getTotalcost());
+                holder.orderFoodName.setText(foodnames);
+                holder.orderFoodQty.setText(foodqty);
+                holder.sno.setText(sno);
+
+                holder.receive.setOnClickListener(v -> {
+                    holder.receive.setChipBackgroundColor(ColorStateList.valueOf(Color.parseColor("#04B80B")));
+                    holder.receive.setTextColor(Color.WHITE);
+                    holder.receive.setText("RECEIVED");
+                    holder.receive.setEnabled(false);
+                    holder.deliver.setVisibility(View.VISIBLE);
+                });
+
+                holder.deliver.setOnClickListener(v -> {
+                    //Code for deliver button
+                });
+
             }
 
-            for (DocumentChange doc : value.getDocumentChanges()) {
-                datalist.add(doc.getDocument().toObject(items.class));
-                adapter.notifyDataSetChanged();
+            @NonNull
+            @Override
+            public RecyclerAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+                return new RecyclerAdapter(view);
             }
-        });
+        };
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 }
