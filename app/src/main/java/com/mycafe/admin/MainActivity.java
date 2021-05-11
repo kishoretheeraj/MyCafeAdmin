@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     holder.receive.setText("RECEIVED");
                     holder.receive.setEnabled(false);
                     holder.deliver.setVisibility(View.VISIBLE);
+                    //Summa unakga push panren.................................
                 });
 
                 holder.deliver.setOnClickListener(v -> {
