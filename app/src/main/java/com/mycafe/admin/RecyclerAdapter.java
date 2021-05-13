@@ -12,8 +12,6 @@ import com.google.android.material.chip.Chip;
 public class RecyclerAdapter extends RecyclerView.ViewHolder{
 
     TextView orderID, userName, userMobile, orderDate, orderTime, totalCost, orderFoodName, orderFoodQty, sno;
-    TableRow tableRow;
-    TableLayout tableLayout;
     Chip receive;
     Button deliver;
 
@@ -28,8 +26,6 @@ public class RecyclerAdapter extends RecyclerView.ViewHolder{
         orderFoodName = itemView.findViewById(R.id.order_food_name);
         orderFoodQty = itemView.findViewById(R.id.order_food_qty);
         sno = itemView.findViewById(R.id.serialno);
-        tableRow = itemView.findViewById(R.id.order_row);
-        tableLayout = itemView.findViewById(R.id.order_Card);
         receive = itemView.findViewById(R.id.chipReceive);
         deliver = itemView.findViewById(R.id.buttonDeliver);
     }

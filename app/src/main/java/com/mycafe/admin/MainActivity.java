@@ -4,23 +4,26 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
+
+    SimpleDateFormat currentDate = new SimpleDateFormat("yyyy/MM/dd");
+    Date todayDate = new Date();
+    String thisDate = currentDate.format(todayDate);
 
     FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     CollectionReference ref = fStore.collection("orders");
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ReadData() {
-        options = new FirestoreRecyclerOptions.Builder<items>().setQuery(ref, items.class).build();
+        options = new FirestoreRecyclerOptions.Builder<items>().setQuery(ref.whereEqualTo("date", thisDate), items.class).build();
         adapter = new FirestoreRecyclerAdapter<items, RecyclerAdapter>(options) {
             @Override
             protected void onBindViewHolder(@NonNull RecyclerAdapter holder, int position, @NonNull items model) {
@@ -78,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
                     holder.receive.setText("RECEIVED");
                     holder.receive.setEnabled(false);
                     holder.deliver.setVisibility(View.VISIBLE);
-                    //Summa unakga push panren.................................
                 });
 
                 holder.deliver.setOnClickListener(v -> {
