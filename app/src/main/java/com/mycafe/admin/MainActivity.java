@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ReadData() {
-        options = new FirestoreRecyclerOptions.Builder<items>().setQuery(ref.orderBy("time", Query.Direction.DESCENDING), items.class).build();
+        options = new FirestoreRecyclerOptions.Builder<items>().setQuery(ref.orderBy("sortid", Query.Direction.DESCENDING), items.class).build();
         adapter = new FirestoreRecyclerAdapter<items, RecyclerAdapter>(options) {
             @Override
             protected void onBindViewHolder(@NonNull RecyclerAdapter holder, int position, @NonNull items model) {
