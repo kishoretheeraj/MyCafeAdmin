@@ -8,18 +8,20 @@ public class items {
     String mobile;
     String date;
     String time;
+    int sortid;
     int totalcost;
     List<String> foodorder;
 
     public items() {
     }
 
-    public items(String orderid, String name, String mobile, String date, String time, int totalcost, List<String> foodorder) {
+    public items(String orderid, String name, String mobile, String date, String time, int sortid, int totalcost, List<String> foodorder) {
         this.orderid = orderid;
         this.name = name;
         this.mobile = mobile;
         this.date = date;
         this.time = time;
+        this.sortid = sortid;
         this.totalcost = totalcost;
         this.foodorder = foodorder;
     }

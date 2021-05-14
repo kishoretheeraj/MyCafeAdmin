@@ -1,6 +1,7 @@
 package com.mycafe.admin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +14,13 @@ import android.view.ViewGroup;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SnapshotMetadata;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ReadData() {
-        options = new FirestoreRecyclerOptions.Builder<items>().setQuery(ref.whereEqualTo("date", thisDate), items.class).build();
+        options = new FirestoreRecyclerOptions.Builder<items>().setQuery(ref.orderBy("time", Query.Direction.DESCENDING), items.class).build();
         adapter = new FirestoreRecyclerAdapter<items, RecyclerAdapter>(options) {
             @Override
             protected void onBindViewHolder(@NonNull RecyclerAdapter holder, int position, @NonNull items model) {
